@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
 (async () => {
 
     const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' },
+        video: true,
         audio: false
     })
 
@@ -78,7 +78,7 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let qrcode = new cv.Mat();
         let result = new cv.Mat();
         let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
-        if(payload) alert('here');
+        console.log(payload);
 
         // Exibe a imagem no canvas
         cv.imshow(canvas, src);
