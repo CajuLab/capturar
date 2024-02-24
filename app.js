@@ -70,8 +70,8 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let thicknessText = 0.5;
         cv.putText(src, text, new cv.Point(10, 40), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
         
-        cv.rectangle(src, new cv.Point(20, 480), new cv.Point(90, 560), [255, 100, 0, 255], 2);
-        let regionOfInterest = src.roi(new cv.Rect(10,70,190,190))
+        cv.rectangle(src, new cv.Point(20, 480), new cv.Point(100, 560), [255, 100, 0, 255], 2);
+        let regionOfInterest = src.roi(new cv.Rect(20,100,80,80))
         
         const qrDetectCode = new cv.QRCodeDetector();
         let qrcode = new cv.Mat();
