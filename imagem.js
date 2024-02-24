@@ -75,18 +75,17 @@ function identifyAndDrawRectangle() {
     let fontScale = 0.5;
     let textColor = new cv.Scalar(0, 0, 255); // (B, G, R)
     let thicknessText = 0.5;
-    cv.putText(src, text, new cv.Point(10, 40), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
+
+    cv.putText(src, text, new cv.Point(10, 480), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
     
-    cv.rectangle(src, new cv.Point(10, 70), new cv.Point(190, 190), [0, 0, 255, 255], 2);
-    let regionOfInterest = src.roi(new cv.Rect(10,70,190,190))
-    // console.log(src, regionOfInterest);
-    
+    cv.rectangle(src, new cv.Point(20, 440), new cv.Point(100, 520), [255, 100, 0, 255], 2);
+    let regionOfInterest = src.roi(new cv.Rect(20,440,80,80))
     
     const qrDetectCode = new cv.QRCodeDetector();
     let qrcode = new cv.Mat();
     let result = new cv.Mat();
-    let payload = qrDetectCode.detectAndDecode(regionOfInterest,qrcode, result)
-
+    let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
+    if(payload) alert(payload);
 
     // Exibir o resultado no canvas
     cv.imshow(canvasOutput, src);
