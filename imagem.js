@@ -70,7 +70,7 @@ function identifyAndDrawRectangle() {
     }
 
     // Adiciona texto à imagem
-    let text = "Gabarito da prova";
+    let text = "QRcode prova";
     let fontFace = cv.FONT_HERSHEY_SIMPLEX;
     let fontScale = 0.5;
     let textColor = new cv.Scalar(0, 0, 255); // (B, G, R)
