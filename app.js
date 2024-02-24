@@ -68,7 +68,8 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let fontScale = 0.35;
         let textColor = new cv.Scalar(0, 0, 255); // (B, G, R)
         let thicknessText = 0.5;
-        cv.putText(src, text, new cv.Point(22, 430), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
+
+        cv.putText(src, text, new cv.Point(20, 430), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
         
         cv.rectangle(src, new cv.Point(20, 440), new cv.Point(100, 520), [255, 100, 0, 255], 2);
         let regionOfInterest = src.roi(new cv.Rect(20,440,80,80))

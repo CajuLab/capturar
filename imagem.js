@@ -85,29 +85,29 @@ function identifyAndDrawRectangle() {
     let qrcode = new cv.Mat();
     let result = new cv.Mat();
     let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
-    if(payload) alert(payload);
-
+    
     // Exibir o resultado no canvas
     cv.imshow(canvasOutput, src);
     cv.imshow(pedaco, regionOfInterest);
+    
+    if(payload){
+        const dataURL = canvasOutput.toDataURL();
 
-    const dataURL = canvasOutput.toDataURL();
-
-
-    fetch(`${API_URL}` + '/upload', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        image: dataURL,
-    }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        fetch(`${API_URL}` + '/upload', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            image: dataURL,
+        }),
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
 
     // Liberar a memória
     gray.delete();
