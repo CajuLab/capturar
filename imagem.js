@@ -4,7 +4,7 @@ let canvasOutput = document.getElementById('canvasOutput');
 let pedaco = document.getElementById('pedaco');
 let fileInput = document.getElementById('fileInput');
 let img = document.getElementById('imagem');
-const API_URL = '';
+const API_URL = 'https://qrcode-qr2c.onrender.com';
 
 fileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) {

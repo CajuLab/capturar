@@ -2,7 +2,7 @@ const video = document.getElementById("video-input");
 const pedaco = document.getElementById("qrcode");
 const canvas = document.getElementById("canvas-output");
 const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
-
+const API_URL = "https://qrcode-qr2c.onrender.com";
 (async () => {
 
     const stream = await navigator.mediaDevices.getUserMedia({
