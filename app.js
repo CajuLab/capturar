@@ -87,6 +87,7 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         setTimeout(processVideo, delay);
 
         if(payload){
+            alert(payload)
             const dataURL = canvasOutput.toDataURL();
     
             fetch(`${API_URL}` + '/upload', {
