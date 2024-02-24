@@ -78,7 +78,6 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let qrcode = new cv.Mat();
         let result = new cv.Mat();
         let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
-        if(payload) alert(payload);
 
         // Exibe a imagem no canvas
         cv.imshow(canvas, src);
@@ -87,9 +86,33 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let delay = 1000 / FDS - (Date.now() - begin);
         setTimeout(processVideo, delay);
 
+        if(payload){
+            const dataURL = canvasOutput.toDataURL();
+    
+            fetch(`${API_URL}` + '/upload', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                image: dataURL,
+            }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
         // Libera memória
         gray.delete();
+        edges.delete();
         thresh.delete();
+        contours.delete();
+        hierarchy.delete();
+        qrcode.delete();
+        result.delete();
     }
 
     setTimeout(processVideo, 0);
