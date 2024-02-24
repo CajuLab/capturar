@@ -78,9 +78,10 @@ function identifyAndDrawRectangle() {
     
     cv.rectangle(src, new cv.Point(10, 70), new cv.Point(190, 190), [0, 0, 255, 255], 2);
     let regionOfInterest = src.roi(new cv.Rect(10,70,190,190))
-
-    const qrCode = jsQR(src.data, src.cols, src.rows);
-    console.log(qrCode)
+    console.log(regionOfInterest);
+    
+    
+    const qrCode = jsQR(regionOfInterest.data, regionOfInterest.cols, regionOfInterest.rows);
 
 
     // Exibir o resultado no canvas
