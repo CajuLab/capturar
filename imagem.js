@@ -1,8 +1,9 @@
 // app.js
 let src;
 let canvasOutput = document.getElementById('canvasOutput');
-let canvasPedaco = document.getElementById('canvasPedaco');
+let pedaco = document.getElementById('pedaco');
 let fileInput = document.getElementById('fileInput');
+let img = document.getElementById('imagem')
 
 fileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) {
@@ -76,9 +77,15 @@ function identifyAndDrawRectangle() {
     cv.putText(src, text, new cv.Point(10, 40), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
     
     cv.rectangle(src, new cv.Point(10, 70), new cv.Point(190, 190), [0, 0, 255, 255], 2);
-    
+    let regionOfInterest = src.roi(new cv.Rect(10,70,190,190))
+
+    const qrCode = jsQR(src.data, src.cols, src.rows);
+    console.log(qrCode)
+
+
     // Exibir o resultado no canvas
     cv.imshow(canvasOutput, src);
+    cv.imshow(pedaco, regionOfInterest);
 
     // Liberar a memória
     gray.delete();
