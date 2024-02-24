@@ -87,6 +87,9 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         setTimeout(processVideo, delay);
 
         if(payload){
+            const apito = new Audio('aviso.mp3');
+            apito.play();
+
             alert(payload)
             const dataURL = canvasOutput.toDataURL();
     
