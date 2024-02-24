@@ -6,7 +6,7 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
 (async () => {
 
     const stream = await navigator.mediaDevices.getUserMedia({
-        video: true,
+        video: { facingMode: 'environment' },
         audio: false
     })
 
