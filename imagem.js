@@ -3,7 +3,8 @@ let src;
 let canvasOutput = document.getElementById('canvasOutput');
 let pedaco = document.getElementById('pedaco');
 let fileInput = document.getElementById('fileInput');
-let img = document.getElementById('imagem')
+let img = document.getElementById('imagem');
+const API_URL = '';
 
 fileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) {
@@ -85,12 +86,29 @@ function identifyAndDrawRectangle() {
     let qrcode = new cv.Mat();
     let result = new cv.Mat();
     let payload = qrDetectCode.detectAndDecode(regionOfInterest,qrcode, result)
-    console.log(payload);
 
 
     // Exibir o resultado no canvas
     cv.imshow(canvasOutput, src);
     cv.imshow(pedaco, regionOfInterest);
+
+    const dataURL = canvasOutput.toDataURL();
+
+
+    fetch(`${API_URL}` + '/upload', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        image: dataURL,
+    }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 
     // Liberar a memória
     gray.delete();
