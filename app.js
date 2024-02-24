@@ -78,7 +78,7 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let qrcode = new cv.Mat();
         let result = new cv.Mat();
         let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
-        console.log(payload);
+        if(payload) alert('here');
 
         // Exibe a imagem no canvas
         cv.imshow(canvas, src);
