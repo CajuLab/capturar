@@ -66,7 +66,7 @@ function identifyAndDrawRectangle() {
     // Desenhar o retângulo na imagem original
     if (largeRectangle) {
         let rect = cv.boundingRect(largeRectangle);
-        cv.rectangle(src, new cv.Point(rect.x, rectgit config pull.rebase false.y), new cv.Point(rect.x + rect.width, rect.y + rect.height), [0, 255, 0, 255], 2);
+        cv.rectangle(src, new cv.Point(rect.x, rect.y), new cv.Point(rect.x + rect.width, rect.y + rect.height), [0, 255, 0, 255], 2);
     }
 
     // Adiciona texto à imagem
