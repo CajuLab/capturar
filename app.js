@@ -1,4 +1,5 @@
 const video = document.getElementById("video-input");
+const pedaco = document.getElementById("qrcode");
 const canvas = document.getElementById("canvas-output");
 const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
 
@@ -69,18 +70,19 @@ const ctx = canvas.getContext("2d");  // Obtém o contexto 2D do canvas
         let thicknessText = 0.5;
         cv.putText(src, text, new cv.Point(10, 40), fontFace, fontScale, textColor, thicknessText, cv.LINE_AA);
         
-        cv.rectangle(src, new cv.Point(10, 70), new cv.Point(190, 190), [0, 100, 100, 255], 2);
+        cv.rectangle(src, new cv.Point(10, 70), new cv.Point(190, 190), [0, 100, 0, 255], 2);
         let regionOfInterest = src.roi(new cv.Rect(10,70,190,190))
         // console.log(src, regionOfInterest);
         
         const qrDetectCode = new cv.QRCodeDetector();
         let qrcode = new cv.Mat();
         let result = new cv.Mat();
-        let payload = qrDetectCode.detectAndDecode(regionOfInterest,qrcode, result)
+        let payload = qrDetectCode.detectAndDecode(regionOfInterest, qrcode, result)
         console.log(payload);
 
         // Exibe a imagem no canvas
         cv.imshow(canvas, src);
+        cv.imshow(pedaco, regionOfInterest);
 
         let delay = 1000 / FDS - (Date.now() - begin);
         setTimeout(processVideo, delay);
