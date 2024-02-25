@@ -88,9 +88,9 @@ const API_URL = "https://qrcode-qr2c.onrender.com";
 
         if(payload){
             const apito = new Audio('aviso.mp3');
+            apito.volume = 1;
             apito.play();
 
-            alert(payload)
             const dataURL = canvasOutput.toDataURL();
     
             fetch(`${API_URL}` + '/upload', {
@@ -103,9 +103,9 @@ const API_URL = "https://qrcode-qr2c.onrender.com";
             }),
             })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => alert(data))
             .catch((error) => {
-                console.error('Error:', error);
+                alert('Error:', error);
             });
         }
 
